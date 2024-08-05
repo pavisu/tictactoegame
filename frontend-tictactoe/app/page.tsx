@@ -1,8 +1,8 @@
 "use client";
 
 import React from 'react';
-import useTicTacToe from '../app/hooks/useTicTacToe'; // Adjust the path if needed
-import '../styles/globals.css'; // Import global styles
+import useTicTacToe from './hooks/useTicTacToe';
+import '../styles/globals.css';
 
 const Home: React.FC = () => {
   const { board, currentPlayer, winner, isGameOver, handleClick, resetGame } = useTicTacToe();
@@ -14,23 +14,25 @@ const Home: React.FC = () => {
         {board.map((cell, index) => (
           <button
             key={index}
-            className={`button ${cell ? cell : ''}`} // Apply styles based on the cell value
+            className={`button ${cell || ''}`}
             onClick={() => handleClick(index)}
-            disabled={!!cell || isGameOver} // Disable button if cell is filled or game is over
+            disabled={!!cell || isGameOver}
           >
-            {cell}
+            {cell || ''}
           </button>
         ))}
       </div>
       <div className="mt-4">
         {winner ? (
-          <div className="text-4xl">
-            {winner === 'Draw' ? "It's a draw!" : `Player ${winner} wins!`}
-          </div>
+          winner === 'Draw' ? (
+            <div className="text-4xl">It is a draw!</div>
+          ) : (
+            <div className="text-4xl">Player {winner} wins!</div>
+          )
         ) : (
-          !isGameOver && <div className="text-xl">Current Player: {currentPlayer}</div>
+          <div className="text-xl">Current Player: {currentPlayer}</div>
         )}
-        <button className="mt-4 retry-button" onClick={resetGame}>
+        <button className="mt-4" onClick={resetGame}>
           Retry
         </button>
       </div>

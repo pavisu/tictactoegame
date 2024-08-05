@@ -1,14 +1,14 @@
-# Use the official OpenJDK image as the base image
-FROM openjdk:17-jdk-slim
 
-# Set the working directory
+# Build Stage
+FROM maven:3.8.3-openjdk-17-slim AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the JAR file into the container
-COPY target/backend-tictactoe-0.0.1-SNAPSHOT.jar app.jar
+# Final Stage
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY --from=build /app/target/tictactoe-0.0.1-SNAPSHOT.jar .
 
-# Expose the port the app runs on
-EXPOSE 8080
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "tictactoe-0.0.1-SNAPSHOT.jar"]
+CMD ["java","-jar","app.jar"]

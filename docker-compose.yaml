@@ -1,37 +1,28 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: ./frontend-tictactoe  # Path to the frontend Dockerfile
-    ports:
-      - "3000:3000"  # Map port 3000 on the host to port 3000 in the container
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./frontend:/app  # Mount the frontend directory to /app in the container
-    depends_on:
-      - backend  # Ensure the backend is started before the frontend
-
   backend:
-    build:
-      context: ./backend-tictactoe  # Path to the backend Dockerfile
+    build: ./backend-tictactoe
     ports:
-      - "8080:8080"  # Map port 8080 on the host to port 8080 in the container
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/mydatabase  # MongoDB connection URI
-    volumes:
-      - ./backend:/app  # Mount the backend directory to /app in the container
+      - "8080:8080"
     depends_on:
-      - mongo  # Ensure MongoDB is started before the backend service
+      - mongodb
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/tictactoe
 
-  mongo:
-    image: mongo:latest  # Use the official MongoDB image
+  frontend:
+    build: ./frontend-tictactoe
     ports:
-      - "27017:27017"  # Map port 27017 on the host to port 27017 in the container
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
     volumes:
-      - mongo-data:/data/db  # Persist MongoDB data between container restarts
+      - mongo-data:/data/db
 
 volumes:
-  mongo-data:  # Define a named volume for MongoDB data persistence
+  mongo-data:

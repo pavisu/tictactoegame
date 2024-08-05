@@ -1,18 +1,17 @@
-package com.example.tictactoe.model;
+package com.example.tictactoe.Entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "games")
-public class Game {
+public class GameEntity {
     @Id
     private String id;
-    private char[][] board;
+    private String[] board; // Change to 1D array of Strings
     private char currentPlayer;
     private String status;
 
     // Getters and Setters
-
     public String getId() {
         return id;
     }
@@ -21,11 +20,11 @@ public class Game {
         this.id = id;
     }
 
-    public char[][] getBoard() {
+    public String[] getBoard() {
         return board;
     }
 
-    public void setBoard(char[][] board) {
+    public void setBoard(String[] board) {
         this.board = board;
     }
 
