@@ -1,4 +1,4 @@
-package com.example.tictactoe.Repository;
+package com.example.tictactoe.Repo;
 
 import com.example.tictactoe.Entity.GameEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;

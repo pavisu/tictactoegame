@@ -1,7 +1,7 @@
 package com.example.tictactoe.Service;
 
 import com.example.tictactoe.Entity.GameEntity;
-import com.example.tictactoe.Repository.GameRepository;
+import com.example.tictactoe.Repo.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
