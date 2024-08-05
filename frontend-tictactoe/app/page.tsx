@@ -14,9 +14,9 @@ const Home: React.FC = () => {
         {board.map((cell, index) => (
           <button
             key={index}
-            className={cell ? `button ${cell}` : 'button'}
+            className={`button ${cell ? cell : ''}`} // Apply styles based on the cell value
             onClick={() => handleClick(index)}
-            disabled={!!cell || isGameOver}
+            disabled={!!cell || isGameOver} // Disable button if cell is filled or game is over
           >
             {cell}
           </button>
@@ -24,13 +24,13 @@ const Home: React.FC = () => {
       </div>
       <div className="mt-4">
         {winner ? (
-          <div className="text-4xl">Player {winner} wins!</div>
-        ) : isGameOver ? (
-          <div className="text-4xl">It's a draw!</div>
+          <div className="text-4xl">
+            {winner === 'Draw' ? "It's a draw!" : `Player ${winner} wins!`}
+          </div>
         ) : (
-          <div className="text-xl">Current Player: {currentPlayer}</div>
+          !isGameOver && <div className="text-xl">Current Player: {currentPlayer}</div>
         )}
-        <button className="mt-4" onClick={resetGame}>
+        <button className="mt-4 retry-button" onClick={resetGame}>
           Retry
         </button>
       </div>
