@@ -1,14 +1,14 @@
-# Start with a base image containing Java runtime
-FROM openjdk:21-jdk-slim
+# Use the official OpenJDK image as the base image
+FROM openjdk:17-jdk-slim
 
-# Add a volume pointing to /tmp
-VOLUME /tmp
+# Set the working directory
+WORKDIR /app
 
-# The application's jar file
-ARG JAR_FILE=target/*.jar
+# Copy the JAR file into the container
+COPY target/backend-tictactoe-0.0.1-SNAPSHOT.jar app.jar
 
-# Add the application's jar to the container
-COPY ${JAR_FILE} app.jar
+# Expose the port the app runs on
+EXPOSE 8080
 
-# Run the jar file
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]

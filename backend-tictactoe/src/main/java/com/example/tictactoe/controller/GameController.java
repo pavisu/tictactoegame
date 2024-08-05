@@ -1,7 +1,7 @@
-package main.java.com.example.tictactoe.controller;
+package com.example.tictactoe.Controller;
 
 import com.example.tictactoe.model.Game;
-import com.example.tictactoe.repository.GameRepository;
+import com.example.tictactoe.Repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
