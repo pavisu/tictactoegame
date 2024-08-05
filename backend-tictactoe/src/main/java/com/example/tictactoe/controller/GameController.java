@@ -1,4 +1,4 @@
-package com.example.tictactoe.Controller;
+package com.example.tictactoe.controller;
 
 import com.example.tictactoe.Entity.GameEntity;
 import com.example.tictactoe.Service.GameServices;
