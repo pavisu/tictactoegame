@@ -2,6 +2,8 @@
 
 This project is a simple Tic-Tac-Toe game built using Spring Boot for the backend, Next.js (with TypeScript and Tailwind CSS) for the frontend, and MongoDB for the database. Docker is used to containerize the services for easy deployment and development.
 
+![Tic-Tac-Toe UI](img/tictactoe.png "Tic-Tac-Toe User-Interface")
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
